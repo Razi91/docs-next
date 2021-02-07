@@ -99,7 +99,7 @@ app.mount('#blog-post-demo')
 
 Gdy wartość jest przekazana atrybutowi z _props_, staje się dostępny w instancji komponentu, również z poziomu szablonu, tak jak każda inna własność komponentu.
 
-Komponent może posiadać tyle `props`ów, ile chcesz. Domyslnie, każda wartość może być przekazana każdemu takiemu atrybutowi.
+Komponent może posiadać tyle `props`ów, ile chcesz. Domyślnie, każda wartość może być przekazana każdemu takiemu atrybutowi.
 
 Kiedy już zarejestrujesz `prop`, możesz przekazać mu dane jak niżej:
 
@@ -112,8 +112,6 @@ Kiedy już zarejestrujesz `prop`, możesz przekazać mu dane jak niżej:
 ```
 
 <common-codepen-snippet title="Component basics: passing props" slug="PoqyOaX" tab="html,result" :preview="false" />
-
-In a typical app, however, you'll likely have an array of posts in `data`:
 
 Jednakże, w typowej aplikacji komponent będzie najprawdopodobniej posiadał tablicę wpisów w `data`.
 
@@ -246,7 +244,7 @@ Czasami przydatne jest emitowanie zdarzenia z konkretną wartością. Na przykł
 <button @click="$emit('enlargeText', 0.1)">Enlarge text</button>
 ```
 
-Kiedy nasłuchujemy zdarzenia w rodzicu, możemy odczytac wyemitowaną wartość za pomocą `$event`:
+Kiedy nasłuchujemy zdarzenia w rodzicu, możemy odczytać wyemitowaną wartość za pomocą `$event`:
 
 ```html
 <blog-post ... @enlarge-text="postFontSize += $event"></blog-post>
@@ -450,7 +448,7 @@ app.component('blog-post', {
 <blog-post post-title="hello!"></blog-post>
 ```
 
-Trzeba zaznaczyć, że **te ograniczenie _nie_ obowiązują, jeżeli używasz szablonów łańcuchowych z jednego z poniższych źródeł:**:
+Trzeba zaznaczyć, że **te ograniczenia _nie_ obowiązują, jeżeli używasz szablonów łańcuchowych z jednego z poniższych źródeł:**:
 
 - Szablon łańcuchowy (e.g. `template: '...'`)
 - [Komponent w pliku (`.vue`)](single-file-component.html)
