@@ -158,7 +158,7 @@ To wszystko, co musisz wiedzieć do tej pory o `props`ach. Kiedy skończysz czyt
 
 W trakcie rozwijania komponentu `<blog-post>`, niektóre funkcje mogą wymagać komunikacji z komponentem-rodzicem. Przykładowo, możemy zdecydować się dodać możliwość powiększania rozmiaru czcionki wpisów, pozostawiając domyślny rozmiar w pozostałych elementach.
 
-W komponencie-rodzicu, możemy zaimplementować tę funkcję, dodając własność `postFontSize` w data.
+W komponencie-rodzicu, możemy zaimplementować tę funkcję, dodając `postFontSize` w data.
 
 ```js
 const App = {
