@@ -23,10 +23,10 @@ app.component('button-counter', {
 ```
 
 ::: info
-Pokazujemy tu bardzo prosty przykład, ale w typowej aplikacji Vue używamy Komponentów w Pliku. Więcej informacji znajdziesz [w tej sekcji](single-file-component.html).
+Pokazujemy tu bardzo prosty przykład, ale w typowej aplikacji Vue używamy komponentów w pliku. Więcej informacji znajdziesz [w tej sekcji](single-file-component.html).
 :::
 
-Komponenty to instancje wielokrotnego użytku, posiadające nazwę: w tym wypadku `<button-counter>`. Możemy skorzystac z tego komponentu jako własnego elementu w instancji głównego komponentu aplikacji.:
+Komponenty to instancje wielokrotnego użytku, posiadające nazwę: w tym wypadku `<button-counter>`. Możemy skorzystac z tego komponentu jako własnego elementu w instancji głównego komponentu aplikacji:
 
 ```html
 <div id="components-demo">
@@ -58,7 +58,7 @@ Możesz ponownie wykorzystywać komponenty tyle razy, ile zechcesz:
 
 Zauważ, że klikając w te przyciski, każdy zachowuje swój odrębny `count`. Dzieje się tak, ponieważ za każdym razem, gdy korzystasz z komponentu, tworzona jest jego nowa **instancja**.
 
-## Organizacja Komponentów
+## Organizacja komponentów
 
 Powszechne jest organizowanie komponentów w aplikacji na wzór drzewa:
 
@@ -80,7 +80,7 @@ Komponenty zarejestrowane globalnie mogą być wykorzystywane w szablonie każde
 
 To wszystko, co musisz do tej pory wiedzieć o rejestrowaniu komponentów. Kiedy skończysz czytać tę stronę i opanujesz wszystkie poruszone zagadnienia, zalecamy powrócić do niej, aby przeczytać cały poradnik odnośnie [rejestracji komponentów](component-registration.md).
 
-## Przekazywanie danych do komponentów-dzieci z wykorzystaniem Props
+## Przekazywanie danych do komponentów-dzieci z wykorzystaniem props
 
 Wcześniej wspomnieliśmy o tworzeniu komponentu dla wpisu na blogu. Problem polega na tym, że ten komponent będzie nieprzydatny, dopóki nie będziesz w stanie przekazać mu danych, takich jak tytuł, czy zawartość konkretnego wpisu do wyświetlenia. Tutaj w grę wchodzą _Props_ .
 
@@ -236,7 +236,7 @@ app.component('blog-post', {
 
 Pozwala to na sprawdzanie wszystkich emitowanych zdarzeń, a także [sprawdzania ich poprawności](component-custom-events.html#validate-emitted-events).
 
-### Emitowanie wartości z wykorzystaniem Zdarzenia
+### Emitowanie zdarzenia z wartością
 
 Czasami przydatne jest emitowanie zdarzenia z konkretną wartością. Na przykład, możemy chcieć by komponent `<blog-post>` był odpowiedzialny za to, o ile powiększyć tekst wpisu. W takim wypadku możemy przekazać funkcji `$emit` drugi argument, który jest wartością emitowaną w zdarzeniu:
 
@@ -313,7 +313,7 @@ app.component('custom-input', {
 })
 ```
 
-Teraz `v-model` powinien działać z tym komponentem bez zarzutów:
+Teraz `v-model` powinien działać z tym komponentem bez zarzutu:
 
 ```html
 <custom-input v-model="searchText"></custom-input>
@@ -343,7 +343,7 @@ app.component('custom-input', {
 
 To wszystko, co musisz wiedzieć do tej pory o własnych zdarzeniach. Kiedy skończysz czytać tę stronę i opanujesz wszystkie poruszone zagadnienia, zalecamy powrócić do niej, aby przeczytać cały poradnik odnośnie [własnych zdarzeń](component-custom-events.md).
 
-## Dystrybucja zawartości z użyciem Slotów
+## Dystrybucja zawartości z użyciem slotów
 
 Tak jak w elementach HTML, czasami chcemy przekazać komponentowi zawartość jak niżej:
 
@@ -372,7 +372,7 @@ Jak widać powyżej, korzystamy z elementu `<slot>` jak ze swoistego _elementu z
 
 To wszystko, co musisz wiedzieć do tej pory o slotach. Kiedy skończysz czytać tę stronę i opanujesz wszystkie poruszone zagadnienia, zalecamy powrócić do niej, aby przeczytać cały poradnik odnośnie [slotów](component-slots.md).
 
-## Dynamiczne Komponenty
+## Dynamiczne komponenty
 
 Czasem przydatne jest przełączanie się między komponentami, jak chociażby w interfejsie zakładek:
 
@@ -429,7 +429,7 @@ Wartość `v-is` jest traktowana jak wyrażenie języka JavaScript, dlatego musi
 
 :::
 
-Co więcej nazwy atrybutów w HTML nie rozróżniają wielkości liter, więc każda wielka litera zostanie potraktowana przez przeglądarki jako mała. To oznacza, że korzystając z szablonów wewnątrz DOMu, nazwy własności zapisane w camelCase oraz nazwy parametrów obsługujących zdarzenia muszą być zapisane w stylu kebab-case (tj. oddzielone myślnikami):
+Co więcej, nazwy atrybutów w HTML nie rozróżniają wielkości liter, więc każda wielka litera zostanie potraktowana przez przeglądarki jako mała. To oznacza, że korzystając z szablonów wewnątrz DOMu, nazwy własności zapisane w camelCase oraz nazwy parametrów obsługujących zdarzenia muszą być zapisane w stylu kebab-case (tj. oddzielone myślnikami):
 
 ```js
 // camelCase w JavaScript
