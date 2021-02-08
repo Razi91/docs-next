@@ -23,10 +23,10 @@ app.component('button-counter', {
 ```
 
 ::: info
-Pokazujemy tu bardzo prosty przykład, ale w typowej aplikacji Vue używamy Komponentów w Jednym Pliku. Więcej informacji znajdziesz [w tej sekcji](single-file-component.html).
+Pokazujemy tu bardzo prosty przykład, ale w typowej aplikacji Vue używamy Komponentów w Pliku. Więcej informacji znajdziesz [w tej sekcji](single-file-component.html).
 :::
 
-Komponenty to instancje wielokrotnego użytku, posiadające nazwę: w tym wypadku, `<button-counter>`. Możemy skorzystac z tego komponentu jako własnego elementu w instancji głównego komponentu aplikacji.:
+Komponenty to instancje wielokrotnego użytku, posiadające nazwę: w tym wypadku `<button-counter>`. Możemy skorzystac z tego komponentu jako własnego elementu w instancji głównego komponentu aplikacji.:
 
 ```html
 <div id="components-demo">
@@ -64,7 +64,7 @@ Powszechne jest organizowanie komponentów w aplikacji na wzór drzewa:
 
 ![Component Tree](/images/components.png)
 
-Na przykład może być komponent Nagłówka, Paska Bocznego i Strefy Zawartości, na którą składają się z reguły inne komponenty dla linków nawigacyjnych, wpisów na blogu, itd.
+Przykładowo, aplikacja może posiadać komponent Nagłówka, Paska Bocznego i Strefy Zawartości, na którą składają się z reguły inne komponenty dla linków nawigacyjnych, wpisów na blogu, itd.
 
 Aby korzystać z tych komponentów w szablonach, muszą być zarejestrowane, aby Vue wiedziało o ich istnieniu. Są dwa sposoby rejestracji komponentów: **globalny** oraz **lokalny**. Do tej pory rejestrowaliśmy nasze komponenty globalnie, używając do tego metody `component` naszej aplikacji.
 
@@ -84,7 +84,7 @@ To wszystko, co musisz do tej pory wiedzieć o rejestrowaniu komponentów. Kiedy
 
 Wcześniej wspomnieliśmy o tworzeniu komponentu dla wpisu na blogu. Problem polega na tym, że ten komponent będzie nieprzydatny, dopóki nie będziesz w stanie przekazać mu danych, takich jak tytuł, czy zawartość konkretnego wpisu do wyświetlenia. Tutaj w grę wchodzą _Props_ .
 
-_Props_ (z ang. _Properties_, czyli _Własności_) to atrybuty, które możesz zarejestrować w komponencie. Aby przekazać własność _tytuł_ komponentowi wpisu, możemy ją umieścić na liście atrybutów przyjmowanych przez komponent, za pomocą opcji `props`:
+_Props_ (z ang. _Properties_, czyli _Własności_) to atrybuty, które możesz zarejestrować w komponencie. Aby przekazać własność _title_ komponentowi wpisu, możemy ją umieścić na liście atrybutów przyjmowanych przez komponent, za pomocą opcji `props`:
 
 ```js
 const app = Vue.createApp({})
@@ -99,7 +99,7 @@ app.mount('#blog-post-demo')
 
 Gdy wartość jest przekazana atrybutowi z _props_, staje się dostępny w instancji komponentu, również z poziomu szablonu, tak jak każda inna własność komponentu.
 
-Komponent może posiadać tyle `props`ów, ile chcesz. Domyślnie, każda wartość może być przekazana każdemu takiemu atrybutowi.
+Komponent może posiadać tyle `props`ów, ile chcesz. Domyślnie, każda wartość może być podana każdemu takiemu atrybutowi.
 
 Kiedy już zarejestrujesz `prop`, możesz przekazać mu dane jak niżej:
 
@@ -113,7 +113,7 @@ Kiedy już zarejestrujesz `prop`, możesz przekazać mu dane jak niżej:
 
 <common-codepen-snippet title="Component basics: passing props" slug="PoqyOaX" tab="html,result" :preview="false" />
 
-Jednakże, w typowej aplikacji komponent będzie najprawdopodobniej posiadał tablicę wpisów w `data`.
+Jednakże, w typowej aplikacji komponent będzie najprawdopodobniej posiadał tablicę wpisów w `data`:
 
 ```js
 const App = {
@@ -156,7 +156,7 @@ To wszystko, co musisz wiedzieć do tej pory o `props`ach. Kiedy skończysz czyt
 
 ## Nasłuchiwanie zdarzeń komponentów-dzieci
 
-W trakcie rozwijania komponentu `<blog-post>`, niektóre funkcje mogą wymagać komunikacji z komponentem-rodzicem. Przykładowo, możemy zdecydować się dodać funkcję ułatwienia dostępu, powiększającą rozmiar czcionki wpisów, pozostawiającą domyślny w pozostałych elementach.
+W trakcie rozwijania komponentu `<blog-post>`, niektóre funkcje mogą wymagać komunikacji z komponentem-rodzicem. Przykładowo, możemy zdecydować się dodać możliwość powiększania rozmiaru czcionki wpisów, pozostawiając domyślny rozmiar w pozostałych elementach.
 
 W komponencie-rodzicu, możemy zaimplementować tę funkcję, dodając własność `postFontSize` w data.
 
@@ -173,7 +173,7 @@ const App = {
 }
 ```
 
-Którą możemy później wykorzystać w szablonie, aby kontrolowac rozmiar czcionki wszystkich wpisów.
+Możemy ją później wykorzystać w szablonie, aby kontrolować rozmiar czcionki wszystkich wpisów.
 
 ```html
 <div id="blog-posts-events-demo">
@@ -209,13 +209,13 @@ Problem polega na tym, że przycisk nic nie robi:
 <button>Enlarge text</button>
 ```
 
-Kiedy klikamy w ten przycisk, musimy zakomunikować rodzicowi, że powinien powiększyć tekst wszystkich wpisów. Żeby rozwiązac ten problem, instancje komponentów posiadają własny system zdarzeń. Rodzic może wybrać, których zdarzeń instancji dziecka nasłuchiwać za pomocą `v-on` lub `@`, tak samo jak w przypadku natywnych zdarzeń DOM.
+Klikając w ten przycisk musimy zakomunikować rodzicowi, że powinien powiększyć tekst wszystkich wpisów. Żeby rozwiązac ten problem, instancje komponentów posiadają własny system zdarzeń. Rodzic może wybrać, których zdarzeń nasłuchiwać, za pomocą `v-on` lub `@`, tak samo jak w przypadku natywnych zdarzeń DOM.
 
 ```html
 <blog-post ... @enlarge-text="postFontSize += 0.1"></blog-post>
 ```
 
-Następnie, komponent-dziecko może wyemitować zdarzenie, wywołując wbudowaną metodę [**`$emit`** method](../api/instance-methods.html#emit), przekazując nazwę zdarzenia:
+Następnie, komponent-dziecko może wyemitować zdarzenie, wywołując wbudowaną metodę [**`$emit`** method](../api/instance-methods.html#emit), przekazując w niej nazwę zdarzenia:
 
 ```html
 <button @click="$emit('enlargeText')">Enlarge text</button>
@@ -238,7 +238,7 @@ Pozwala to na sprawdzanie wszystkich emitowanych zdarzeń, a także [sprawdzania
 
 ### Emitowanie wartości z wykorzystaniem Zdarzenia
 
-Czasami przydatne jest emitowanie zdarzenia z konkretną wartością. Na przykład, możemy chcieć by komponent `<blog-post>` był odpowiedzialny za to, o ile powiększyć tekst wpisu. W takich wypadkach możemy przekazać funkcji `$emit` drugi argument, który jest wartością emitowaną w zdarzeniu:
+Czasami przydatne jest emitowanie zdarzenia z konkretną wartością. Na przykład, możemy chcieć by komponent `<blog-post>` był odpowiedzialny za to, o ile powiększyć tekst wpisu. W takim wypadku możemy przekazać funkcji `$emit` drugi argument, który jest wartością emitowaną w zdarzeniu:
 
 ```html
 <button @click="$emit('enlargeText', 0.1)">Enlarge text</button>
@@ -319,7 +319,7 @@ Teraz `v-model` powinien działać z tym komponentem bez zarzutów:
 <custom-input v-model="searchText"></custom-input>
 ```
 
-Innym sposobem implementacji `v-model` w tym komponencie, jest wykorzystanie możliwości definiowania metod typu getter i setter w `computed`. Metoda `get` powinna zwracać wartość atrybutu `modelValue`. Z kolei metoda `set` powinna emitowac odpowiednie zdarzenie:
+Innym sposobem implementacji `v-model` w tym komponencie, jest wykorzystanie możliwości definiowania metod typu getter i setter w `computed`. Metoda `get` powinna zwracać wartość atrybutu `modelValue`. Z kolei metoda `set` powinna emitować odpowiednie zdarzenie:
 
 ```js
 app.component('custom-input', {
@@ -388,17 +388,17 @@ Powyższe jest możliwe dzięki specjalnemu elementowi `<component>`, który pos
 W tym przykładzie, `currentTabComponent` może zawierać albo:
 
 - nazwę zarejestrowanego komponentu, albo
-- Obiekt opcji komponentu
+- obiekt opcji komponentu
 
 Zobacz [tę piaskownicę](https://codepen.io/team/Vue/pen/oNXaoKy), aby poeksperymentować z całym kodem lub [tę wersję](https://codepen.io/team/Vue/pen/oNXapXM), gdzie komponenty są przypisywane za pomocą obiektu opcji, zamiast nazwy.
 
 Możesz również użyć własności `is` do tworzenia zwykłych elementów HTML.
 
-To wszystko, co musisz wiedzieć do tej pory o slotach. Kiedy skończysz czytać tę stronę i opanujesz wszystkie poruszone zagadnienia, zalecamy powrócić do niej, aby przeczytać cały poradnik odnośnie [dynamicznych i asynchronicznych komponentów](./component-dynamic-async.html).
+To wszystko, co musisz wiedzieć do tej pory o dynamicznych komponentach. Kiedy skończysz czytać tę stronę i opanujesz wszystkie poruszone zagadnienia, zalecamy powrócić do niej, aby przeczytać cały poradnik odnośnie [dynamicznych i asynchronicznych komponentów](./component-dynamic-async.html).
 
 ## Uwagi dotyczące parsowania szablonów DOM
 
-Niektóre elementy, takie jak `<ul>`, `<ol>`, `<table>`, czy `<select>` mają pewne ograniczenia co do elementów, które mogą się pojawić wewnątrz nich. Natomiast znaczniki pokroju `<li>`, `<tr>` lub `<option>` mogą występować jedynie wewnątrz konkretnych elementów.
+Niektóre elementy, takie jak `<ul>`, `<ol>`, `<table>`, czy `<select>` mają pewne ograniczenia co do znaczników, które mogą się pojawić wewnątrz nich. Natomiast elementy pokroju `<li>`, `<tr>` lub `<option>` mogą występować jedynie wewnątrz konkretnych znaczników.
 
 To może sprawić problemy podczas używania komponentów z elementami, które posiadają takie restrykcje:
 
@@ -417,7 +417,7 @@ Nasz własny komponent `<blog-post-row>` zostanie uznany za niewłaściwy, powod
 ```
 
 :::warning
-Wartość `v-is` jest traktowana jako wyrażenie języka JavaScript, dlatego musimy otoczyć nazwę komponentu apostrofami:
+Wartość `v-is` jest traktowana jak wyrażenie języka JavaScript, dlatego musimy otoczyć nazwę komponentu apostrofami:
 
 ```html
 <!-- Niepoprawne, nic nie zostanie wyświetlone -->
@@ -454,8 +454,6 @@ Trzeba zaznaczyć, że **te ograniczenia _nie_ obowiązują, jeżeli używasz sz
 - [Komponent w pliku (`.vue`)](single-file-component.html)
 - `<script type="text/x-template">`
 
-To wszystko, co musisz wiedzieć do tej pory o uwagach dotyczących parsowania szablonów w DOM - tak naprawdę, to już koniec _Podstaw_ Vue. Gratulacje! Wciąż jest dużo do nauki, ale najpierw, zachęcamy zrobić sobie przerwę, żeby samemu pobawić się trochę z Vue i napisać coś fajnego.
-
-Once you feel comfortable with the knowledge you've just digested, we recommend coming back to read the full guide on [Dynamic & Async Components](component-dynamic-async.html), as well as the other pages in the Components In-Depth section of the sidebar.
+To wszystko, co musisz wiedzieć do tej pory o uwagach dotyczących parsowania szablonów w DOM - tak naprawdę, to już koniec _Podstaw Vue_. Gratulacje! Wciąż jest dużo do nauki, ale najpierw, zachęcamy zrobić sobie przerwę, żeby samemu pobawić się z Vue i napisać coś fajnego.
 
 Kiedy już opanujesz wszystkie zagadnienia, które przerobiliśmy, zachęcamy również do przeczytania całego poradnika odnośnie [dynamicznych i asynchronicznych komponentów](component-dynamic-async.html), ale też pozostałych stron w sekcji _Komponenty Od Kuchni_ w pasku bocznym.
